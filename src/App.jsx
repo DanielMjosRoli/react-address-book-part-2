@@ -9,8 +9,8 @@ import CreateContact from './components/CreateContact';
 function App() {
     const [people, setPeople] = useState([])
 
-    useEffect(() => {
-        fetch("https://boolean-uk-api-server.fly.dev/danielmjosroli/contact").then(Response => {
+    const fetchPeople = () => {
+      fetch("https://boolean-uk-api-server.fly.dev/danielmjosroli/contact").then(Response => {
         if(Response.ok){
           return Response.json()
         }
@@ -21,18 +21,20 @@ function App() {
         }).catch(error => {
           console.error("Error fetching data: ", error)
         })
+    }
+    useEffect(() => {
+        fetchPeople()
       }, [])
 
       console.log(people)
     return (
         <>
             <header>
-                <p>Hello, world!</p>
                 <Menu/>
                 <Routes>
                     <Route path="/" element={<ContactList people={people}/>}/>
                     <Route path='/contact/:id' element={<Contact/>}/>
-                    <Route path='/createcontact' element={<CreateContact/>}/>
+                    <Route path='/createcontact' element={<CreateContact setPeople={setPeople} people={people}/>}/>
                 </Routes>
                 
             </header>

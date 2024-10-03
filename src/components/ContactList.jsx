@@ -7,7 +7,7 @@ function ContactList(props){
         <div className="contact-List">
             <ul>
                 {people.map((person) => (
-                    <li key={person.id} ><Link to={"/contact/"+person.id.toString()}>{person.firstName} {person.lastName}</Link></li>
+                    <li key={person.id} ><Link to={"/contact/"+person.id}>{person.firstName} {person.lastName}</Link></li>
                 ))}
             </ul>
         </div>

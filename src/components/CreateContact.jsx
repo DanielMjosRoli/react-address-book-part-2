@@ -1,6 +1,9 @@
 import { useState } from "react"
-
-function CreateContact(){
+import { useNavigate } from "react-router-dom"
+function CreateContact(props){
+    const Navigate = useNavigate()
+    const { setPeople } = props
+    const { people } = props
     const submitionBody = {
         firstName: "",
         lastName: "",
@@ -37,7 +40,9 @@ function CreateContact(){
         event.preventDefault()
         console.log(submition)
         postContact()
+        setPeople([...people, submition])
         setSubmition(submitionBody)
+        Navigate('/')
     }
 
     return(
